@@ -2,11 +2,12 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import yfinance as yf
 from scipy.stats import norm
 
+'''data = yf.download(ticker_symbol) --> dowloading from yf doesn't work because SCB blocks,
+need to download stock data from marketwatch and copy into directory manually.
+'''
 ticker_symbol = 'AAPL'
-#data = yf.download(ticker_symbol)
 data = pd.read_csv("STOCK_US_XNAS_AAPL.csv")
 
 #Calculate logarithmic returns & drift
