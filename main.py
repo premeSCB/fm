@@ -12,14 +12,14 @@ data = pd.read_csv("STOCK_US_XNAS_AAPL.csv")
 
 #Calculate logarithmic returns & drift
 log_returns = np.log(1+data['Close'].pct_change()) ##
-u = log_returns.mean()
+u = log_returns.mean() 
 var = log_returns.var()
 drift = u - (0.5*var)
 
 #Generating random variables
 stdev = log_returns.std()
-days = 50
-trials = 100
+days = 300
+trials = 10000
 Z = norm.ppf(np.random.rand(days, trials))
 daily_returns = np.exp(np.array(drift) + np.array(stdev) * Z)
 
@@ -32,3 +32,7 @@ for t in range(1, days):
 #plot
 plt.figure(figsize=[10,8])
 plt.plot(price_paths)
+plt.title('300 days, 1000 trials Monte Carlo Simulation for AAPL')
+plt.xlabel('Days')
+plt.ylabel('Price')
+plt.show()
